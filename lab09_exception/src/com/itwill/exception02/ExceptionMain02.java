@@ -24,21 +24,27 @@ import java.util.Scanner;
 
 public class ExceptionMain02 {
 
-	public static void main(String[] args) {
-		 Scanner sc = new Scanner(System.in);
-		 
-		 try {
-			 System.out.println("x = ");
-			 int x = Integer.parseInt(sc.nextLine());
-			 
-			 System.out.println("y = ");
-			 int y = Integer.parseInt(sc.nextLine());
-			 
-			 System.out.println("x / y = " + ( x / y ));
-		 } catch (ArithmeticException e) {
-			 System.out.println("y는 0이 될 수 없음.");
-	     }
-		 
-	}
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        try {
+            System.out.print("x = ");
+            int x = Integer.parseInt(sc.nextLine());
+            
+            System.out.print("y = ");
+            int y = Integer.parseInt(sc.nextLine());
+            
+            System.out.println("x / y = " + (x / y));
+        } catch (ArithmeticException e) {
+            System.out.println("y는 0이 될 수 없음.");
+            System.out.println(e.getMessage());
+        } catch (NumberFormatException e) {
+            System.out.println("x, y는 정수로 입력하세요.");
+            System.out.println(e.getMessage());
+        } finally {
+        	System.out.println("----end----");	
+        }
+
+    }
 
 }

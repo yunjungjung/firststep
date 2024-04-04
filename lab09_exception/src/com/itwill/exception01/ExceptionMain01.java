@@ -16,21 +16,21 @@ import java.util.Scanner;
 
 public class ExceptionMain01 {
 
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-	
-		System.out.println("정수 x 입력> ");
-		int x = Integer.parseInt(sc.nextLine());
-		
-		System.out.println("정수 y 입력> ");
-		int y = Integer.parseInt(sc.nextLine());
-		
-		if (y !=0) {
-			System.out.println("나눈 몫 = " + (x / y));
-		} else {
-			System.out.println("0으로는 나눌 수 없습니다.");
-		}
-	
-	}
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        System.out.print("정수 x 입력> ");
+        int x = Integer.parseInt(sc.nextLine());
+        
+        System.out.print("정수 y 입력> ");
+        int y = Integer.parseInt(sc.nextLine());
+        
+        if (y != 0) {
+            System.out.println("나눈 몫 = " + (x / y));
+        } else {
+            System.out.println("0으로는 나눌 수 없습니다.");
+        }
+
+    }
 
 }
