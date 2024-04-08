@@ -19,7 +19,7 @@ public class Contact {
 	}
 	
 	//메서드 
-	public String getNme() {
+	public String getName() {
 		return this.name;
 	}
 	
@@ -37,7 +37,7 @@ public class Contact {
 	public String getEmail() {
 		return this.email;
 	}
-	public void setemail(String email) {
+	public void setEmail(String email) {
 		this.email = email;
 	}
 	

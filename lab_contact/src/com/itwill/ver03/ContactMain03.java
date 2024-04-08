@@ -1,18 +1,18 @@
-package com.itwill.ver02;
+package com.itwill.ver03;
 
 import java.util.Scanner;
 
 import com.itwill.ver01.Contact;
 
-public class ContactMain02 {
+public class ContactMain03 {
     
     private final Scanner scanner = new Scanner(System.in);
-    private ContactDao dao = ContactDaoImpl.getInstance();
+    private ContactDao dao = ContactDaoImpl.getInstance(); // 메서드 없어서
     
     public static void main(String[] args) {
         System.out.println("*** 연락처 프로그램 v0.2 ***");
         
-        ContactMain02 app = new ContactMain02();
+        ContactMain03 app = new ContactMain03();
         
         boolean run = true;
         while (run) {
