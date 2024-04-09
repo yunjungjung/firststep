@@ -25,7 +25,7 @@ public class ContactDaoImpl implements ContactDao {
     
     @Override //새로운 연락처 정보(이름, 전화번호, 이메일)을 리스트에 저장.
     public int create(Contact contact) {
-        if (contacts.add(contact)) {
+       if (contacts.add(contact)) {
         return 1;
       } else {
     	return 0;
@@ -39,7 +39,7 @@ public class ContactDaoImpl implements ContactDao {
 
     @Override // 인덱스를 사용한 연락처 정보 검색 기능.
     public Contact read(int index) {
-        if(index >=0 && index < contacts.size()) {
+        if (isValidIndex(index)) {
         	return contacts.get(index);
         } else {
         	return null;
@@ -49,8 +49,10 @@ public class ContactDaoImpl implements ContactDao {
 
     @Override // 연락처 정보 업데이트 기능.
     public int update(int index, Contact contact) {
-    	 if(index >=0 && index < contacts.size()) {
-    		 contacts.set(index, contact);
+    	 if (isValidIndex(index)) {
+    		// contacts.set(index, contact);
+    		 contacts.get(index).setName(contact.getName());
+    		 // 위의 코드 풀이: 연락처의 정보를 가져와서 setName의 연락처 이름을 수정.
          	return 1;
          	} else {
          	return 0;
@@ -60,12 +62,19 @@ public class ContactDaoImpl implements ContactDao {
 
     @Override // 연락처 삭제 기능.
     public int delete(int index) {
-        if (index >=0 && index < contacts.size()) {
+        if (isValidIndex(index)) {
         	contacts.remove(index);
         return 1;
         } else {
         	return 0;
         }
     }
+
+	public boolean isValidIndex(int index) {
+		
+		return (index >=0 && index < contacts.size());
+
+	
+	}
 
 }

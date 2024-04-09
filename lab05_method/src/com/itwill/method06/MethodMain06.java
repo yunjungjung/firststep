@@ -12,7 +12,7 @@ public class MethodMain06 {
 		System.out.println(); // println() // 
 		System.out.println(true); // println(boolean x) // 논리
 		
-		newLine(); // 호출할때 아무것도 넣어주지 않으면 파라미터를 갖지 않는 메서드를 찾음.
+		newLine1(); // 호출할때 아무것도 넣어주지 않으면 파라미터를 갖지 않는 메서드를 찾음.
 		newLine(3); // 호출할때 값을 넣어주면 파라미터로 int타입 1개만 선언되어 있는 메서드를 찾음. ->11번째 줄
 		
 		System.out.println("======");
@@ -21,7 +21,7 @@ public class MethodMain06 {
 	/**
 	 * 콘솔에 빈 줄 하나를 출력하는 메서드.
 	 */
-	public static void newLine() {
+	public static void newLine1() {
 		System.out.println();
 	}
 	

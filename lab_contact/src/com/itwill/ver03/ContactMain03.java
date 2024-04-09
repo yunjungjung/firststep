@@ -1,16 +1,17 @@
 package com.itwill.ver03;
 
+import java.util.List;
 import java.util.Scanner;
 
 import com.itwill.ver01.Contact;
-
+// 뷰
 public class ContactMain03 {
     
-    private final Scanner scanner = new Scanner(System.in);
-    private ContactDao dao = ContactDaoImpl.getInstance(); // 메서드 없어서
+    private Scanner scanner = new Scanner(System.in);
+    private ContactDao dao = ContactDaoImpl.getInstance(); // 컨트롤러
     
     public static void main(String[] args) {
-        System.out.println("*** 연락처 프로그램 v0.2 ***");
+        System.out.println("*** 연락처 프로그램 v0.3 ***");
         
         ContactMain03 app = new ContactMain03();
         
@@ -33,6 +34,9 @@ public class ContactMain03 {
             case 4:
                 app.updateContactByIndex();
                 break;
+            case 5:
+            	app.deleteContactByIndex();
+            	break;
             default:
                 System.out.println("메뉴 번호(0 ~ 4)를 확인하세요.");
             }
@@ -40,7 +44,25 @@ public class ContactMain03 {
         
         System.out.println("*** 프로그램 종료 ***");
     }
-    
+    private void deleteContactByIndex() {
+    	System.out.println("\n--- 연락처 삭제 ---");
+    	
+    	System.out.print("삭제할 인덱스 입력>> ");
+    	 int index = inputInteger();
+    	 
+    	 if (!((ContactDaoImpl) dao).isValidIndex(index)) {
+             System.out.println("해당 인덱스에는 수정할 정보가 없습니다...");
+             return;
+    	 }   
+         int result = dao.delete(index);
+         if (result == 1) {
+             System.out.println(">>> 연락처 삭제 성공");
+         } else {
+              System.out.println(">>> 연락처 삭제 실패");
+         }
+     }
+         
+   
     private void updateContactByIndex() {
         System.out.println("\n--- 연락처 수정 ---");
         
@@ -97,7 +119,7 @@ public class ContactMain03 {
     private void readAllContacts() {
         System.out.println("\n--- 연락처 목록 ---");
         
-        Contact[] contacts = dao.read();
+        List<Contact> contacts = dao.read();
         int index = 0;
         for (Contact c : contacts) {
             if (c != null) {
@@ -110,10 +132,6 @@ public class ContactMain03 {
     private void saveNewContact() {
         System.out.println("\n--- 새 연락처 저장 ---");
         
-        if (((ContactDaoImpl) dao).isMemoryFull()) {
-            System.out.println("저장 공간이 부족합니다...");
-            return; // 메서드 종료
-        }
         
         System.out.print("이름 입력>> ");
         String name = scanner.nextLine();
@@ -135,9 +153,9 @@ public class ContactMain03 {
     }
     
     private int selectMainMenu() {
-        System.out.println("\n----------------------------------------------");
-        System.out.println("[0]종료 [1]저장 [2]목록 [3]인덱스검색 [4]수정");
-        System.out.println("----------------------------------------------");
+        System.out.println("\n---------------------------------------------------");
+        System.out.println("[0]종료 [1]저장 [2]목록 [3]인덱스검색 [4]수정 [5]삭제");
+        System.out.println("-----------------------------------------------------");
         System.out.print("선택> ");
         
         int menu = inputInteger();
