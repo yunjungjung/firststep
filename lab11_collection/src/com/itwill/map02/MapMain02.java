@@ -23,8 +23,8 @@ public class MapMain02 {
 		}
 		
 		// decendingKeySet(): TreeMap에서 내림차순 정렬된 키들의 집합.
-		  Set<String> keySet = menu.keySet();
-	        for (String k : keySet) {
+		  Set<String> keySet1 = menu.keySet();
+	        for (String k : keySet1) {
 	            System.out.println(k + " : " + menu.get(k));
 	        }
 	        
