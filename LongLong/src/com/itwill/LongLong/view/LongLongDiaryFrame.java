@@ -84,7 +84,7 @@ public class LongLongDiaryFrame  {
      */
     private void initialize() {
         frame = new JFrame();
-        frame.setBounds(100, 100, 640, 560);
+        frame.setBounds(100, 100, 588, 585);
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setTitle("블로그 메인");
         
