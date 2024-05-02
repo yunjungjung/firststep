@@ -19,6 +19,7 @@ public class PosInventoryFrame extends JFrame {
 			public void run() {
 				try {
 					PosInventoryFrame frame = new PosInventoryFrame();
+					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();

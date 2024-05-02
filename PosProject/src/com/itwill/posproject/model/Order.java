@@ -1,12 +1,10 @@
 package com.itwill.posproject.model;
 
-public class Pos extends Object{
+public class Order extends Object{
 	private String name;
-	private String temp;
 	private int price;
 
-	
-	public String getName() {
+public String getName() {
 		return name;
 	}
 	public void setName(String name) {
@@ -21,7 +19,7 @@ public class Pos extends Object{
 	}
 	
 	public String toString() {
-		return "Coffee [name=" + name + ",  temp=" + temp + ", price=" + price
+		return "Coffee [name=" + name + ", price=" + price
 				+ "]";
 	}
 	

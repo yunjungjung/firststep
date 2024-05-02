@@ -8,6 +8,8 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Color;
 import javax.swing.JLabel;
 import java.awt.Font;
+import java.awt.Window;
+
 import javax.swing.ImageIcon;
 import javax.swing.UIManager;
 import javax.swing.SwingConstants;
@@ -32,6 +34,7 @@ public class PosMain extends JFrame {
 	private JButton btnOrder;
 	private JButton btnInventory;
 	private JButton btnSales;
+	private Window frame;
 
 	/**
 	 * Launch the application.
@@ -56,6 +59,7 @@ public class PosMain extends JFrame {
 		setTitle("sweet pos");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 900, 615);
+		setLocationRelativeTo(null);//화면 중앙에 창이 뜨게 하기.
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
@@ -80,6 +84,13 @@ public class PosMain extends JFrame {
 		buttonPanel.setLayout(null);
 		
 		btnOrder = new JButton("주문");
+		btnOrder.addActionListener(new ActionListener() {
+			@Override
+			// 주문창 화면 띄우기
+			public void actionPerformed(ActionEvent e) {
+				PosOrderFrame.showPosOrderFrame();
+			}
+		});
 		btnOrder.setForeground(new Color(108, 108, 108));
 		btnOrder.setFont(new Font("D2Coding", Font.BOLD, 17));
 		btnOrder.setBounds(241, 10, 115, 40);
