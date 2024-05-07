@@ -26,7 +26,7 @@ public class PosProductFrame extends JFrame {
 			}
 		});
 	}
-
+ 
 	/**
 	 * Create the frame.
 	 */
