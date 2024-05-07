@@ -1,117 +1,144 @@
 package com.itwill.posproject.view;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import java.awt.Color;
-import javax.swing.JLabel;
+import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.Window;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
 
 import javax.swing.ImageIcon;
-import javax.swing.UIManager;
-import javax.swing.SwingConstants;
 import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+
+import com.itwill.posproject.controller.OrderDao;
+import com.itwill.posproject.model.Order;
 import java.awt.BorderLayout;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 
+public class PosMain {
 
+   JFrame frame;
+   
+   private OrderDao dao = OrderDao.getInstance();
+   private JLabel lblNewLabel;
+   private JLabel lblTitle;
 
+   private Object contentPane;
+   private JButton btnInventory;
+   private JButton btnSales;
 
+   /**
+    * Launch the application.
+    */
+   public static void main(String[] args) {
+      EventQueue.invokeLater(new Runnable() {
+         public void run() {
+            try {
+               PosMain window = new PosMain();
+               window.frame.setVisible(true);
+            } catch (Exception e) {
+               e.printStackTrace();
+            }
+         }
+      });
+   }
 
+   /**
+    * Create the application.
+    */
+   public PosMain() {
+      initialize();
+      initializeTable();
+ 
+   }
 
-public class PosMain extends JFrame {
+   private void initializeTable() {
+        // DAO를 사용해서 DB 테이블에서 검색.
+//        List<Order> orders = dao.equals();
+//        resetTable(orders); // 테이블 리셋
+    }
+   
 
-	
-	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
-	private JLabel lblTitle;
-	private JLabel lblNewLabel;
-	private JPanel buttonPanel;
-	private JButton btnOrder;
-	private JButton btnInventory;
-	private JButton btnSales;
-	private Window frame;
+   private void resetTable(List<Order> orders) {
+      // TODO Auto-generated method stub
+      
+   }
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					PosMain frame = new PosMain();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
+   /**
+    * Initialize the contents of the frame.
+    */
+   private void initialize() {
+        frame = new JFrame();
+        frame.setBounds(100, 100, 900, 615);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setTitle("포스 메인");
+        frame.getContentPane().setLayout(null);
+        
+        lblTitle = new JLabel("SWEET POS");
+        lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
+        lblTitle.setFont(new Font("D2Coding", Font.BOLD, 33));
+        lblTitle.setBounds(336, 47, 196, 74);
+        frame.getContentPane().add(lblTitle);
 
-	/**
-	 * Create the frame.
-	 */
-	public PosMain() {
-		setTitle("sweet pos");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 900, 615);
-		setLocationRelativeTo(null);//화면 중앙에 창이 뜨게 하기.
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+      setContentPane(contentPane);
+      frame.getContentPane().setLayout(null);
 
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
-		
-		lblTitle = new JLabel("SWEET POS");
-		lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
-		lblTitle.setForeground(new Color(107, 105, 105));
-		lblTitle.setFont(new Font("D2Coding", Font.BOLD, 26));
-		lblTitle.setBounds(329, 36, 207, 64);
-		contentPane.add(lblTitle);
-		
-		lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\itwill\\Desktop\\images\\image01.png"));
-		lblNewLabel.setBounds(279, 110, 314, 187);
-		contentPane.add(lblNewLabel);
-		
-		buttonPanel = new JPanel();
-		buttonPanel.setBounds(132, 324, 609, 214);
-		contentPane.add(buttonPanel);
-		buttonPanel.setLayout(null);
-		
-		btnOrder = new JButton("주문");
-		btnOrder.addActionListener(new ActionListener() {
-			@Override
-			// 주문창 화면 띄우기
-			public void actionPerformed(ActionEvent e) {
-				PosOrderFrame.showPosOrderFrame();
-			}
-		});
-		btnOrder.setForeground(new Color(108, 108, 108));
-		btnOrder.setFont(new Font("D2Coding", Font.BOLD, 17));
-		btnOrder.setBounds(241, 10, 115, 40);
-		buttonPanel.add(btnOrder);
-		
-		btnInventory = new JButton("재고");
-		btnInventory.setForeground(new Color(108, 108, 108));
-		btnInventory.setFont(new Font("D2Coding", Font.BOLD, 17));
-		btnInventory.setBounds(241, 60, 115, 40);
-		buttonPanel.add(btnInventory);
-		
-		btnSales = new JButton("매출");
-		btnSales.setForeground(new Color(108, 108, 108));
-		btnSales.setFont(new Font("D2Coding", Font.BOLD, 17));
-		btnSales.setBounds(241, 111, 115, 40);
-		buttonPanel.add(btnSales);
-		
-		JButton btnProduct = new JButton("상품관리");
-		btnProduct.setForeground(new Color(108, 108, 108));
-		btnProduct.setFont(new Font("D2Coding", Font.BOLD, 17));
-		btnProduct.setBounds(241, 161, 115, 40);
-		buttonPanel.add(btnProduct);
-	}
+      lblNewLabel = new JLabel("");
+      lblNewLabel.setIcon(new ImageIcon("C:\\Users\\itwill\\Desktop\\images\\image01.png"));
+      lblNewLabel.setBounds(279, 110, 314, 187);
+      frame.getContentPane().add(lblNewLabel);
+      
+      JButton btnNewButton = new JButton("주문");
+      btnNewButton.setFont(new Font("D2Coding", Font.BOLD, 20));
+      btnNewButton.addActionListener(new ActionListener() {
+            @Override
+            // 주문창 화면 띄우기
+            public void actionPerformed(ActionEvent e) {
+               PosOrderFrame.showPosOrderFrame();
+            
+         }
+      });
+      btnNewButton.setBounds(369, 320, 135, 50);
+      frame.getContentPane().add(btnNewButton);
+      
+      btnInventory = new JButton("재고관리");
+      btnInventory.addActionListener(new ActionListener() {
+          @Override
+          // 주문창 화면 띄우기
+          public void actionPerformed(ActionEvent e) {
+             PosInventoryFrame.showPosInventoryFrame();
+          
+         }
+      });
+      btnInventory.setFont(new Font("D2Coding", Font.BOLD, 20));
+      btnInventory.setBounds(369, 392, 135, 50);
+      frame.getContentPane().add(btnInventory);
+	      
+      
+      
+      btnSales = new JButton("매출관리");
+      btnSales.addActionListener(new ActionListener() {
+          @Override
+          // 주문창 화면 띄우기
+          public void actionPerformed(ActionEvent e) {
+             PosSalesFrame.showPosSalesFrame();
+          
+         }
+      });
+      btnSales.setFont(new Font("D2Coding", Font.BOLD, 20));
+      btnSales.setBounds(369, 464, 135, 50);
+      frame.getContentPane().add(btnSales);
+      
+
+   }
+      
+   private void setContentPane(Object contentPane) {
+      // TODO Auto-generated method stub
+      
+   }
 }
+

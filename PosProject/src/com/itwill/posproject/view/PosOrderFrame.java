@@ -41,19 +41,23 @@ public class PosOrderFrame extends JFrame {
    
    // 상품의 가격 설정
    private final int PIG_BAR_PRICE = 1000;
-    private final int JEWEL_BAR_PRICE = 1500;
+   private final int JEWEL_BAR_PRICE = 1000;
+   private final int BUNPARAE_PRICE = 1700;
+   private final int WA_PRICE = 2000;
+   private final int WILD_BODY_PRICE = 1000;
+   private final int TANK_BOY_PRICE = 1200;
+   private final int COOAND_CRE_PRICE = 1000;
+   private final int SSANGSSANG_BAR_PRICE = 1000;
+   private final int WASACK_BAR_PRICE = 10800;
+
     private JTextField textField;
+    
+   // 상품의 재고
    protected int pigBarStock;
-//    private final int
-//    private final int
-//    private final int
-//    private final int
-//    private final int
-//    private final int
-//    private final int
    protected int jewelBarStock;
     
-    
+   // 재고 관리를 위한 PosInventoryFrame 인스턴스 생성
+   private PosInventoryFrame inventoryFrame;
 
    /**
     * Launch the application.
@@ -145,8 +149,15 @@ public class PosOrderFrame extends JFrame {
       JButton btnNewButton_1_1 = new JButton("빵빠레");
       btnNewButton_1_1.addActionListener(new ActionListener() {
          public void actionPerformed(ActionEvent e) {
+             // 주문된 제품과 수량 가져오기
+             String productName = "빵빠레"; // 버튼의 텍스트를 가져오거나 설정할 수도 있습니다.
+             int quantity = 1; // 예시로 수량 1로 설정
+
+             // 주문 테이블에 추가
+             addOrderToTable(productName, quantity, BUNPARAE_PRICE);
          }
-      });
+     });
+        
       btnNewButton_1_1.setFont(new Font("D2Coding", Font.BOLD, 17));
       btnNewButton_1_1.setBounds(347, 125, 115, 37);
       panel.add(btnNewButton_1_1);
@@ -157,6 +168,18 @@ public class PosOrderFrame extends JFrame {
       panel.add(lblNewLabel_1_2_2);
       
       JButton btnNewButton_2 = new JButton("와");
+      btnNewButton_2.addActionListener(new ActionListener() {
+      	public void actionPerformed(ActionEvent e) {
+      		
+                 // 주문된 제품과 수량 가져오기
+                 String productName = "와"; // 버튼의 텍스트를 가져오거나 설정할 수도 있습니다.
+                 int quantity = 1; // 예시로 수량 1로 설정
+
+                 // 주문 테이블에 추가
+                 addOrderToTable(productName, quantity, WA_PRICE);
+   
+      	}
+      });
       btnNewButton_2.setFont(new Font("D2Coding", Font.BOLD, 17));
       btnNewButton_2.setBounds(51, 270, 115, 37);
       panel.add(btnNewButton_2);
@@ -166,11 +189,32 @@ public class PosOrderFrame extends JFrame {
       panel.add(lblNewLabel_1_2_3);
       
       JButton btnNewButton_3 = new JButton("와일드바디");
+      btnNewButton_3.addActionListener(new ActionListener() {
+      	 public void actionPerformed(ActionEvent e) {
+            // 주문된 제품과 수량 가져오기
+            String productName = "와일드바디"; // 버튼의 텍스트를 가져오거나 설정할 수도 있습니다.
+            int quantity = 1; // 예시로 수량 1로 설정
+
+            // 주문 테이블에 추가
+            addOrderToTable(productName, quantity, WILD_BODY_PRICE);
+
+ 	      }
+      });
       btnNewButton_3.setFont(new Font("D2Coding", Font.BOLD, 16));
       btnNewButton_3.setBounds(199, 270, 115, 37);
       panel.add(btnNewButton_3);
       
       JButton btnNewButton_4 = new JButton("탱크보이");
+      btnNewButton_4.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+              // 주문된 제품과 수량 가져오기
+              String productName = "탱크보이"; // 버튼의 텍스트를 가져오거나 설정할 수도 있습니다.
+              int quantity = 1; // 예시로 수량 1로 설정
+
+              // 주문 테이블에 추가
+              addOrderToTable(productName, quantity, TANK_BOY_PRICE);
+          }
+      });
       btnNewButton_4.setFont(new Font("D2Coding", Font.BOLD, 17));
       btnNewButton_4.setBounds(347, 270, 115, 37);
       panel.add(btnNewButton_4);
@@ -181,20 +225,46 @@ public class PosOrderFrame extends JFrame {
       panel.add(lblNewLabel_1_2_4);
       
       JButton btnNewButton_5 = new JButton("쿠앤크");
+      btnNewButton_5.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+              // 주문된 제품과 수량 가져오기
+              String productName = "쿠앤크"; // 버튼의 텍스트를 가져오거나 설정할 수도 있습니다.
+              int quantity = 1; // 예시로 수량 1로 설정
+
+              // 주문 테이블에 추가
+              addOrderToTable(productName, quantity, COOAND_CRE_PRICE);
+          }
+      });
       btnNewButton_5.setFont(new Font("D2Coding", Font.BOLD, 17));
       btnNewButton_5.setBounds(51, 419, 115, 37);
       panel.add(btnNewButton_5);
       
       JButton btnNewButton_6 = new JButton("쌍쌍바");
       btnNewButton_6.addActionListener(new ActionListener() {
-         public void actionPerformed(ActionEvent e) {
-         }
+          public void actionPerformed(ActionEvent e) {
+              // 주문된 제품과 수량 가져오기
+              String productName = "쌍쌍바"; // 버튼의 텍스트를 가져오거나 설정할 수도 있습니다.
+              int quantity = 1; // 예시로 수량 1로 설정
+
+              // 주문 테이블에 추가
+              addOrderToTable(productName, quantity, SSANGSSANG_BAR_PRICE);
+          }
       });
       btnNewButton_6.setFont(new Font("D2Coding", Font.BOLD, 17));
       btnNewButton_6.setBounds(199, 419, 115, 37);
       panel.add(btnNewButton_6);
       
       JButton btnNewButton_7 = new JButton("와삭바");
+      btnNewButton_7.addActionListener(new ActionListener() {
+          public void actionPerformed(ActionEvent e) {
+              // 주문된 제품과 수량 가져오기
+              String productName = "와삭바"; // 버튼의 텍스트를 가져오거나 설정할 수도 있습니다.
+              int quantity = 1; // 예시로 수량 1로 설정
+
+              // 주문 테이블에 추가
+              addOrderToTable(productName, quantity, WASACK_BAR_PRICE);
+          }
+      });
       btnNewButton_7.setFont(new Font("D2Coding", Font.BOLD, 17));
       btnNewButton_7.setBounds(347, 419, 115, 37);
       panel.add(btnNewButton_7);
@@ -209,13 +279,21 @@ public class PosOrderFrame extends JFrame {
               int quantity = 1; // 예시로 수량 1로 설정
               
               // 여기에 주문 처리 로직을 추가할 수 있습니다.
-            
+           // 주문 처리
+              processOrder(productName, quantity, PIG_BAR_PRICE);
               
               // 예시로 콘솔에 주문 정보를 출력하는 대신에, 위에서 작성한 코드와 통합하여 처리할 수 있습니다.
               System.out.println("주문된 제품: " + productName + ", 수량: " + quantity);
               // 추가적인 처리 로직을 여기에 작성하세요.
               JOptionPane.showMessageDialog(contentPane, "주문이 완료되었습니다. \n 감사합니다", "알림", JOptionPane.PLAIN_MESSAGE);
           }
+
+		private void processOrder(String productName, int quantity, int pIG_BAR_PRICE) {
+			// TODO Auto-generated method stub
+			
+		}
+         
+         
       });
       btnNewButton_5_1.setFont(new Font("D2Coding", Font.BOLD, 17));
       btnNewButton_5_1.setBounds(125, 504, 115, 37);
@@ -240,8 +318,6 @@ public class PosOrderFrame extends JFrame {
                  // 합계금액 업데이트
                  updateTotalAmount();
              
-                 
-               
             }
          });
       btnNewButton_5_1_1.setFont(new Font("D2Coding", Font.BOLD, 17));
