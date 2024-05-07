@@ -1,6 +1,7 @@
 package com.itwill.posproject.controller;
 
 import com.itwill.posproject.model.Inventory;
+import oracle.jdbc.OracleDriver;
 
 public class InventoryDao {
 	   private int PIG_BAR;
