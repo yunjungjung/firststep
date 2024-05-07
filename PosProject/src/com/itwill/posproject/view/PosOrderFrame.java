@@ -12,6 +12,10 @@ import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.awt.event.ActionEvent;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -38,6 +42,11 @@ public class PosOrderFrame extends JFrame {
    private JButton btnNewButton_5_1;
    private JButton btnNewButton_5_1_1;
    private JTable table;
+   
+   // 데이터베이스 연결을 위한 정보
+   private static final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
+   private static final String USER = "scott";
+   private static final String PASSWORD = "tiger";
    
    // 상품의 가격 설정
    private final int PIG_BAR_PRICE = 1000;
@@ -365,57 +374,70 @@ public class PosOrderFrame extends JFrame {
          table.getColumnModel().getColumn(3).setPreferredWidth(250);
       
       
-      JLabel lblNewLabel = new JLabel("합계금액");
-      lblNewLabel.setFont(new Font("D2Coding", Font.BOLD, 18));
-      lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
-      lblNewLabel.setBounds(547, 485, 108, 50);
-      contentPane.add(lblNewLabel);
-      
-      textField = new JTextField();
-      textField.setFont(new Font("D2Coding", Font.BOLD, 24));
-      textField.setBounds(663, 485, 139, 52);
-      contentPane.add(textField);
-      textField.setColumns(10);
-   }
-      private void updateTotalAmount() {
-          DefaultTableModel model = (DefaultTableModel) table.getModel();
-          int rowCount = model.getRowCount();
-          int totalAmount = 0;
-          for (int i = 0; i < rowCount; i++) {
-              int totalPrice = (int) model.getValueAt(i, 3);
-              totalAmount += totalPrice;
-          }
-          textField.setText(String.valueOf(totalAmount));
-      }
-      
+
+         JLabel lblNewLabel = new JLabel("합계금액");
+         lblNewLabel.setFont(new Font("D2Coding", Font.BOLD, 18));
+         lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+         lblNewLabel.setBounds(547, 485, 108, 50);
+         contentPane.add(lblNewLabel);
+
+         textField = new JTextField();
+         textField.setFont(new Font("D2Coding", Font.BOLD, 24));
+         textField.setBounds(663, 485, 139, 52);
+         contentPane.add(textField);
+         textField.setColumns(10);
+     }
+
+     private void updateTotalAmount() {
+         DefaultTableModel model = (DefaultTableModel) table.getModel();
+         int rowCount = model.getRowCount();
+         int totalAmount = 0;
+         for (int i = 0; i < rowCount; i++) {
+             int totalPrice = (int) model.getValueAt(i, 3);
+             totalAmount += totalPrice;
+         }
+         textField.setText(String.valueOf(totalAmount));
+     }
+
+     // 수정된 주문 추가 메서드
+     private void addOrderToTable(String productName, int quantity, int price) {
+         DefaultTableModel model = (DefaultTableModel) table.getModel();
+         int rowCount = model.getRowCount();
+         boolean isFound = false;
+         for (int i = 0; i < rowCount; i++) {
+             if (model.getValueAt(i, 0).equals(productName)) {
+                 int prevQuantity = (int) model.getValueAt(i, 2);
+                 quantity += prevQuantity;
+                 model.setValueAt(quantity, i, 2);
+                 int totalPrice = price * quantity;
+                 model.setValueAt(totalPrice, i, 3);
+                 isFound = true;
+                 break;
+             }
+         }
+
+         if (!isFound) {
+             int totalPrice = price * quantity;
+             model.addRow(new Object[]{productName, price, quantity, totalPrice});
+         }
+
+         updateTotalAmount();
+         
+         // 주문을 데이터베이스에 저장
+         saveOrderToDatabase(productName, quantity);
+         
+         // 재고 업데이트
+         updateInventory(productName, quantity);
+     }
+     
    
+     private void saveOrderToDatabase(String productName, int quantity) {
+		// TODO Auto-generated method stub
+		
+	}
 
-   private void addOrderToTable(String productName, int quantity, int price) {
-       // 주문 테이블에 있는지 확인
-       DefaultTableModel model = (DefaultTableModel) table.getModel();
-       int rowCount = model.getRowCount();
-       boolean isFound = false;
-       for (int i = 0; i < rowCount; i++) {
-           if (model.getValueAt(i, 0).equals(productName)) {
-               // 이미 주문된 제품이면 수량과 가격을 업데이트
-               int prevQuantity = (int) model.getValueAt(i, 2);
-               quantity += prevQuantity;
-               model.setValueAt(quantity, i, 2); // 수량 업데이트
-               int totalPrice = price * quantity;
-               model.setValueAt(totalPrice, i, 3); // 가격 업데이트
-               isFound = true;
-               break;
-           }
-       }
-
-       // 새로운 주문인 경우 테이블에 추가
-       if (!isFound) {
-           int totalPrice = price * quantity; // 총 가격 계산
-           model.addRow(new Object[]{productName, price, quantity, totalPrice});
-       }
-
-       // 합계금액 업데이트
-       updateTotalAmount( );
-   }
-   
-}
+	// 재고를 업데이트하는 메서드
+     private void updateInventory(String productName, int quantity) {
+         // 재고를 감소시키는 코드를 여기에 작성
+     }
+ }
