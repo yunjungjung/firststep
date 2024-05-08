@@ -1,8 +1,9 @@
 package com.itwill.posproject.view;
 
-import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -11,134 +12,127 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
-import javax.swing.JPanel;
 import javax.swing.SwingConstants;
-import javax.swing.border.EmptyBorder;
 
-import com.itwill.posproject.controller.OrderDao;
 import com.itwill.posproject.model.Order;
-import java.awt.BorderLayout;
+
+import java.awt.Color;
 
 public class PosMain {
 
-   JFrame frame;
-   
-   private OrderDao dao = OrderDao.getInstance();
-   private JLabel lblNewLabel;
-   private JLabel lblTitle;
+    private JFrame frame;
+    private JLabel lblTitle;
+    private JButton btnInventory;
+    private JButton btnSales;
+    private JLabel lblBackground;
+    private JLabel lblTitle_1;
+    private JLabel lblTitle_2;
+    private JLabel lblTitle_3;
 
-   private Object contentPane;
-   private JButton btnInventory;
-   private JButton btnSales;
-
-   /**
-    * Launch the application.
-    */
-   public static void main(String[] args) {
-      EventQueue.invokeLater(new Runnable() {
-         public void run() {
-            try {
-               PosMain window = new PosMain();
-               window.frame.setVisible(true);
-            } catch (Exception e) {
-               e.printStackTrace();
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    PosMain window = new PosMain();
+                    window.frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
-         }
-      });
-   }
-
-   /**
-    * Create the application.
-    */
-   public PosMain() {
-      initialize();
-      initializeTable();
- 
-   }
-
-   private void initializeTable() {
-        // DAO를 사용해서 DB 테이블에서 검색.
-//        List<Order> orders = dao.equals();
-//        resetTable(orders); // 테이블 리셋
+        });
     }
-   
 
-   private void resetTable(List<Order> orders) {
-      // TODO Auto-generated method stub
-      
-   }
+    public PosMain() {
+        initialize();
+        initializeTable();
+    }
 
-   /**
-    * Initialize the contents of the frame.
-    */
-   private void initialize() {
+    private void initializeTable() {
+
+    }
+
+    private void resetTable(List<Order> orders) {
+        // TODO Auto-generated method stub
+    }
+
+    private void initialize() {
         frame = new JFrame();
         frame.setBounds(100, 100, 900, 615);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("포스 메인");
         frame.getContentPane().setLayout(null);
-        
+
+        // 아이콘 창 바꾸기
+        Image img = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/com/itwill/posproject/images/아이스크림.png"));
+        frame.setIconImage(img);
+
         lblTitle = new JLabel("SWEET POS");
+        lblTitle.setForeground(new Color(0, 102, 255));
         lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
-        lblTitle.setFont(new Font("D2Coding", Font.BOLD, 33));
-        lblTitle.setBounds(336, 47, 196, 74);
+        lblTitle.setFont(new Font("Microsoft Tai Le", Font.BOLD, 49));
+        lblTitle.setBounds(284, 38, 295, 98);
         frame.getContentPane().add(lblTitle);
 
-      setContentPane(contentPane);
-      frame.getContentPane().setLayout(null);
-
-      lblNewLabel = new JLabel("");
-      lblNewLabel.setIcon(new ImageIcon("C:\\Users\\itwill\\Desktop\\images\\image01.png"));
-      lblNewLabel.setBounds(279, 110, 314, 187);
-      frame.getContentPane().add(lblNewLabel);
-      
-      JButton btnNewButton = new JButton("주문");
-      btnNewButton.setFont(new Font("D2Coding", Font.BOLD, 20));
-      btnNewButton.addActionListener(new ActionListener() {
+        // 주문
+        JButton btnNewButton = new JButton("");
+        btnNewButton.setIcon(new ImageIcon(getClass().getResource("/com/itwill/posproject/images/메인버튼01 (1).png")));
+        btnNewButton.setBorderPainted(false);
+        btnNewButton.setForeground(new Color(0, 51, 255));
+        btnNewButton.setFont(new Font("Monospaced", Font.BOLD, 21));
+        btnNewButton.setContentAreaFilled(false); // 배경을 투명하게 설정
+        btnNewButton.addActionListener(new ActionListener() {
             @Override
             // 주문창 화면 띄우기
             public void actionPerformed(ActionEvent e) {
-               PosOrderFrame.showPosOrderFrame();
-            
-         }
-      });
-      btnNewButton.setBounds(369, 320, 135, 50);
-      frame.getContentPane().add(btnNewButton);
-      
-      btnInventory = new JButton("재고관리");
-      btnInventory.addActionListener(new ActionListener() {
-          @Override
-          // 주문창 화면 띄우기
-          public void actionPerformed(ActionEvent e) {
-             PosInventoryFrame.showPosInventoryFrame();
-          
-         }
-      });
-      btnInventory.setFont(new Font("D2Coding", Font.BOLD, 20));
-      btnInventory.setBounds(369, 392, 135, 50);
-      frame.getContentPane().add(btnInventory);
-	      
-      
-      
-      btnSales = new JButton("매출관리");
-      btnSales.addActionListener(new ActionListener() {
-          @Override
-          // 주문창 화면 띄우기
-          public void actionPerformed(ActionEvent e) {
-             PosSalesFrame.showPosSalesFrame();
-          
-         }
-      });
-      btnSales.setFont(new Font("D2Coding", Font.BOLD, 20));
-      btnSales.setBounds(369, 464, 135, 50);
-      frame.getContentPane().add(btnSales);
-      
+                PosOrderFrame.showPosOrderFrame();
+            }
+        });
+        btnNewButton.setBounds(263, 150, 135, 130);
+        frame.getContentPane().add(btnNewButton);
 
-   }
-      
-   private void setContentPane(Object contentPane) {
-      // TODO Auto-generated method stub
-      
-   }
+        // 재고 관리
+        btnInventory = new JButton("");
+        btnInventory.setIcon(new ImageIcon(getClass().getResource("/com/itwill/posproject/images/메인버튼01 (1).png")));
+        btnInventory.setBorderPainted(false);
+        btnInventory.setForeground(new Color(0, 51, 255));
+        btnInventory.setContentAreaFilled(false); // 배경을 투명하게 설정
+        btnInventory.addActionListener(new ActionListener() {
+            @Override
+            // 재고관리창 화면 띄우기
+            public void actionPerformed(ActionEvent e) {
+                PosInventoryFrame.showPosInventoryFrame();
+            }
+        });
+        btnInventory.setFont(new Font("Monospaced", Font.BOLD, 21));
+        btnInventory.setBounds(379, 150, 135, 130);
+        frame.getContentPane().add(btnInventory);
+
+        // 매출 관리
+        btnSales = new JButton("");
+        btnSales.setIcon(new ImageIcon(getClass().getResource("/com/itwill/posproject/images/메인버튼01 (1).png")));
+        btnSales.setBorderPainted(false);
+        btnSales.setForeground(new Color(0, 51, 255));
+        btnSales.setContentAreaFilled(false); // 배경을 투명하게 설정
+        btnSales.addActionListener(new ActionListener() {
+            @Override
+            // 매출관리창 화면 띄우기
+            public void actionPerformed(ActionEvent e) {
+                PosSalesFrame.showPosSalesFrame();
+            }
+        });
+        btnSales.setFont(new Font("Monospaced", Font.BOLD, 21));
+        btnSales.setBounds(530, 180, 315, 146);
+        frame.getContentPane().add(btnSales);
+
+        lblTitle_1 = new JLabel("주문");
+        lblTitle_1.setHorizontalAlignment(SwingConstants.CENTER);
+        lblTitle_1.setForeground(new Color(0, 102, 255));
+        lblTitle_1.setFont(new Font("굴림", Font.BOLD, 27));
+        lblTitle_1.setBounds(85, 143, 76, 38);
+        frame.getContentPane().add(lblTitle_1);
+
+        lblBackground = new JLabel(new ImageIcon(getClass().getResource("/com/itwill/posproject/images/배경화면.jpg")));
+        lblBackground.setBounds(0, 0, 884, 576);
+        frame.getContentPane().add(lblBackground);
+    }
 }
-

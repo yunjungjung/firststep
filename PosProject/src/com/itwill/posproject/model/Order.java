@@ -2,39 +2,42 @@
 package com.itwill.posproject.model;
 
 public class Order {
-   
    public static final class Entity {
-   // 데이터베이스 테이블 이름을 상수로 선언.
-      public static final String TBL_MENUS = "Order";
+      // 데이터베이스 테이블 이름을 상수로 선언.
+      public static final String TBL_ORDER = "Orders";
 
-      // 데이터베이스 "Order" 테이블의 컬럼 이름들을 상수로 선언.
-      public static final String COL_NAMES = "name";
-      public static final String COL_PRICE = "price";
-      public static final String COL_NUMBER = "number";
-      public static final String COL_TOTLAPRICE = "totalprice";
-
+      public static final String COL_ORDER_DATE= "ORDER_DATE";
+      public static final String COL_MENU = "MENU";
+      public static final String COL_PRICE = "PRICE";
    }
-   private String names;
+
+   private String orderDate;
+   private String menu;
    private int price;
-   private int number;
-   private int totalprice;
    
    public Order() {}
 
-   public Order(String names, int price, int number, int totalprice) {
+   public Order(String date, String menu, int price) {
       super();
-      this.names = names;
+      this.orderDate = date;
+      this.menu = menu;
       this.price = price;
-      this.number = number;
-      this.totalprice = totalprice;
    }
 
-   public String getNames() {
-      return names;
+   public String getDate() {
+      return orderDate;
    }
 
-   public void setNames(String names) {
-      this.names = names;
+   public void setDate(String names) {
+      this.orderDate = names;
+   }
+
+   public String getMenu() {
+      return menu;
+   }
+
+   public void setMenu(String names) {
+      this.menu = names;
    }
 
    public int getPrice() {
@@ -45,28 +48,8 @@ public class Order {
       this.price = price;
    }
 
-   public int getNumber() {
-      return number;
-   }
-
-   public void setNumber(int number) {
-      this.number = number;
-   }
-
-   public int getTotalprice() {
-      return totalprice;
-   }
-
-   public void setTotalprice(int totalprice) {
-      this.totalprice = totalprice;
-   }
-
    @Override
    public String toString() {
-      return "Order [names=" + names + ", price=" + price + ", number=" + number + ", totalprice=" + totalprice + "]";
-   
-
+      return "Order [date=" + orderDate + ", menu=" + menu + ", price=" + price + "]";
    }
-   
-   
 }

@@ -1,63 +1,154 @@
 package com.itwill.posproject.view;
 
+import com.itwill.posproject.controller.OrderDao;
+import com.itwill.posproject.model.Order;
+
 import java.awt.EventQueue;
+
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
 import java.awt.Font;
-import javax.swing.JButton;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JTextField;
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PosSalesFrame extends JFrame {
+	private static final long serialVersionUID = 1L;
 
-    private static final long serialVersionUID = 1L;
-    private JPanel contentPane;
-    private JTextField textField;
-    private JButton btnSearch;
+	private OrderDao dao = OrderDao.getInstance();
 
-    public static void showPosSalesFrame() {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    PosSalesFrame frame = new PosSalesFrame();
-                    frame.setVisible(true);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
+	private static List<String> dateList = new ArrayList<>();
 
-    public PosSalesFrame() {
-        setTitle("매출 관리");
-        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setBounds(100, 100, 627, 535);
-        contentPane = new JPanel();
-        contentPane.setBorder(null);
-        setContentPane(contentPane);
-        contentPane.setLayout(null);
+	private JPanel contentPane;
+	private JTextField textField;
+	private JButton btnSearch;
+	private JTable table;
 
-        JPanel searchPanel = new JPanel();
-        searchPanel.setBounds(109, 10, 370, 51);
-        contentPane.add(searchPanel);
+	/**
+	 * Launch the application.
+	 */
+	public static void showPosSalesFrame() {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					PosSalesFrame frame = new PosSalesFrame();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 
-        JComboBox<String> comboBox = new JComboBox<String>();
-        comboBox.setFont(new Font("D2Coding", Font.PLAIN, 28));
-        searchPanel.add(comboBox);
+	/**
+	 * Create the frame.
+	 */
+	public PosSalesFrame() {
+		// dateList에 날짜 목록을 가져온다
+		setDateList();
 
-        textField = new JTextField();
-        textField.setFont(new Font("D2Coding", Font.PLAIN, 28));
-        textField.setColumns(10);
-        searchPanel.add(textField);
+		setTitle("매출관리");
+		setTitle("재고 관리");
+		// 아이콘 설정
+		Image img = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/com/itwill/posproject/images/아이스크림.png"));
+		setIconImage(img);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 627, 535);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 
-        btnSearch = new JButton("조회");
-        btnSearch.setFont(new Font("D2Coding", Font.PLAIN, 28));
-        searchPanel.add(btnSearch);
-    }
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JPanel searchPanel = new JPanel();
+		searchPanel.setBounds(109, 10, 370, 51);
+		contentPane.add(searchPanel);
 
-    // 매출 조회 기능 추가
-    private void searchSalesByDate(String date) {
-        // 선택한 날짜를 이용하여 DB에서 해당 날짜의 매출 정보를 조회하고,
-        // 조회된 정보를 테이블에 표시하는 기능을 구현하세요.
-    }
+		JComboBox<String> comboBox = new JComboBox<String>();
+		comboBox.setFont(new Font("D2Coding", Font.PLAIN, 28));
+		int size = dateList.size();
+		for (int i = 0; i < size; i++) {
+			comboBox.addItem(dateList.get(i));
+		}
+
+		comboBox.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				String selectedDate = (String) comboBox.getSelectedItem();
+				updateTable(selectedDate);
+			}
+		});
+
+		searchPanel.add(comboBox);
+
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setBounds(30, 58, 365, 380);
+		contentPane.add(scrollPane);
+		table = new JTable();
+		table.setFont(new Font("D2Coding", Font.BOLD, 12));
+		table.setModel(new DefaultTableModel(
+				new Object[][]{
+				},
+				new String[]{
+						"번호", "날짜", "메뉴", "가격"
+				}
+		));
+		scrollPane.setViewportView(table);
+
+		JLabel lblNewLabel = new JLabel("합계금액");
+		lblNewLabel.setFont(new Font("D2Coding", Font.BOLD, 18));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lblNewLabel.setBounds(30, 450, 100, 50);
+		contentPane.add(lblNewLabel);
+
+		textField = new JTextField();
+		textField.setFont(new Font("D2Coding", Font.BOLD, 24));
+		textField.setBounds(150, 450, 139, 52);
+		contentPane.add(textField);
+		textField.setColumns(10);
+
+		// 초기에는 첫 번째 날짜에 대한 주문 목록을 테이블에 표시
+		if (size > 0) {
+			updateTable(dateList.get(0));
+		}
+	}
+
+	private void setDateList() {
+		dateList = dao.searchDates();
+	}
+
+	private void updateTable(String selectedDate) {
+		List<Order> orders = dao.search(OrderDao.SEARCH_BY_DATE, selectedDate);
+		DefaultTableModel model = (DefaultTableModel) table.getModel();
+
+		// 테이블의 모든 행을 삭제
+		while (model.getRowCount() > 0) {
+			model.removeRow(0);
+		}
+
+		// orders 리스트에 있는 각 Order 객체의 데이터를 테이블에 추가
+		int size = orders.size();
+		for (int i = 0; i < size; i++) {
+			Order order = orders.get(i);
+			Object[] row = new Object[] { i+1, order.getDate(), order.getMenu(), order.getPrice() };
+			model.addRow(row);
+		}
+		updateTotalAmount();
+	}
+
+	// 테이블의 모든 행의 가격을 합산하여 textField에 표시
+	private void updateTotalAmount() {
+		DefaultTableModel model = (DefaultTableModel) table.getModel();
+		int rowCount = model.getRowCount();
+		int totalAmount = 0;
+		for (int i = 0; i < rowCount; i++) {
+			int totalPrice = (int) model.getValueAt(i, 3);
+			totalAmount += totalPrice;
+		}
+		textField.setText(String.valueOf(totalAmount));
+	}
 }
