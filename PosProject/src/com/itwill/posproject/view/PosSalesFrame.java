@@ -28,10 +28,6 @@ public class PosSalesFrame extends JFrame {
     private JTextField textField;
     private JButton btnSearch;
     private JTable table;
-    /**
-     * @wbp.nonvisual location=170,619
-     */
-    private final JLabel label = new JLabel("New label");
     private JButton btnNewButton;
     private JLabel lblNewLabel_1;
 
@@ -71,7 +67,7 @@ public class PosSalesFrame extends JFrame {
         contentPane.setLayout(null);
         
         JPanel searchPanel = new JPanel();
-        searchPanel.setBounds(128, 10, 532, 51);
+        searchPanel.setBounds(291, 26, 228, 51);
         contentPane.add(searchPanel);
 
         JComboBox<String> comboBox = new JComboBox<String>();
@@ -121,7 +117,7 @@ public class PosSalesFrame extends JFrame {
         searchPanel.add(btnNewButton);
 
         JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setBounds(32, 71, 738, 380);
+        scrollPane.setBounds(32, 87, 738, 380);
         contentPane.add(scrollPane);
         table = new JTable();
 
