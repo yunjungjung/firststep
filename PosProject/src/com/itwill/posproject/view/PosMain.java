@@ -74,21 +74,21 @@ public class PosMain {
         frame.getContentPane().add(lblTitle);
 
         // 주문
-        JButton btnNewButton = new JButton("");
-        btnNewButton.setIcon(new ImageIcon(getClass().getResource("/com/itwill/posproject/images/메인버튼01 (1).png")));
-        btnNewButton.setBorderPainted(false);
-        btnNewButton.setForeground(new Color(0, 51, 255));
-        btnNewButton.setFont(new Font("Monospaced", Font.BOLD, 21));
-        btnNewButton.setContentAreaFilled(false); // 배경을 투명하게 설정
-        btnNewButton.addActionListener(new ActionListener() {
+        JButton btnOrder = new JButton("");
+        btnOrder.setIcon(new ImageIcon(getClass().getResource("/com/itwill/posproject/images/메인버튼01 (1).png")));
+        btnOrder.setBorderPainted(false);
+        btnOrder.setForeground(new Color(0, 51, 255));
+        btnOrder.setFont(new Font("Monospaced", Font.BOLD, 21));
+        btnOrder.setContentAreaFilled(false); // 배경을 투명하게 설정
+        btnOrder.addActionListener(new ActionListener() {
             @Override
             // 주문창 화면 띄우기
             public void actionPerformed(ActionEvent e) {
                 PosOrderFrame.showPosOrderFrame();
             }
         });
-        btnNewButton.setBounds(263, 150, 135, 130);
-        frame.getContentPane().add(btnNewButton);
+        btnOrder.setBounds(264, 122, 84, 98);
+        frame.getContentPane().add(btnOrder);
 
         // 재고 관리
         btnInventory = new JButton("");
@@ -104,7 +104,7 @@ public class PosMain {
             }
         });
         btnInventory.setFont(new Font("Monospaced", Font.BOLD, 21));
-        btnInventory.setBounds(379, 150, 135, 130);
+        btnInventory.setBounds(392, 132, 84, 98);
         frame.getContentPane().add(btnInventory);
 
         // 매출 관리
@@ -121,18 +121,32 @@ public class PosMain {
             }
         });
         btnSales.setFont(new Font("Monospaced", Font.BOLD, 21));
-        btnSales.setBounds(530, 180, 315, 146);
+        btnSales.setBounds(517, 122, 84, 98);
         frame.getContentPane().add(btnSales);
 
         lblTitle_1 = new JLabel("주문");
         lblTitle_1.setHorizontalAlignment(SwingConstants.CENTER);
         lblTitle_1.setForeground(new Color(0, 102, 255));
-        lblTitle_1.setFont(new Font("굴림", Font.BOLD, 27));
-        lblTitle_1.setBounds(85, 143, 76, 38);
+        lblTitle_1.setFont(new Font("굴림", Font.BOLD, 25));
+        lblTitle_1.setBounds(250, 230, 104, 38);
         frame.getContentPane().add(lblTitle_1);
-
-        lblBackground = new JLabel(new ImageIcon(getClass().getResource("/com/itwill/posproject/images/배경화면.jpg")));
-        lblBackground.setBounds(0, 0, 884, 576);
-        frame.getContentPane().add(lblBackground);
+        
+        JLabel lblTitle_1_1 = new JLabel("재고관리");
+        lblTitle_1_1.setHorizontalAlignment(SwingConstants.CENTER);
+        lblTitle_1_1.setForeground(new Color(0, 102, 255));
+        lblTitle_1_1.setFont(new Font("굴림", Font.BOLD, 25));
+        lblTitle_1_1.setBounds(380, 241, 104, 38);
+        frame.getContentPane().add(lblTitle_1_1);
+        
+        JLabel lblTitle_1_2 = new JLabel("매출관리");
+        lblTitle_1_2.setHorizontalAlignment(SwingConstants.CENTER);
+        lblTitle_1_2.setForeground(new Color(0, 102, 255));
+        lblTitle_1_2.setFont(new Font("굴림", Font.BOLD, 25));
+        lblTitle_1_2.setBounds(517, 230, 104, 38);
+        frame.getContentPane().add(lblTitle_1_2);
+        
+                lblBackground = new JLabel(new ImageIcon(getClass().getResource("/com/itwill/posproject/images/배경화면.jpg")));
+                lblBackground.setBounds(0, 0, 884, 576);
+                frame.getContentPane().add(lblBackground);
     }
 }

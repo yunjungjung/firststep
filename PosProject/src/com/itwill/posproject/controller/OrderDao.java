@@ -139,6 +139,8 @@ public class OrderDao {
             "select DISTINCT(%s) from %s ORDER BY %s",
             COL_ORDER_DATE, TBL_ORDER, COL_ORDER_DATE);
 
+	public static final int SEARCH_ALL_DATES = 0;
+
     // 데이터베이스에서 검색된 결과를 Order 객체로 만들어서 반환.
     public List<String> searchDates() {
         List<String> result = new ArrayList<>();

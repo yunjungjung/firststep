@@ -12,6 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 import java.awt.Font;
@@ -19,6 +20,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.Color;
 
 public class PosInventoryFrame extends JFrame {
     private InventoryDao inventoryDao = InventoryDao.getInstance();
@@ -39,6 +41,8 @@ public class PosInventoryFrame extends JFrame {
     private final String COOAND_CRE_NAME = "쿠앤크";
     private final String SSANGSSANG_BAR_NAME = "쌍쌍바";
     private final String WASACK_BAR_NAME = "와삭바";
+    private JLabel lblNewLabel;
+    private JLabel lblback;
 
     /**
      * Launch the application.
@@ -62,22 +66,23 @@ public class PosInventoryFrame extends JFrame {
      */
     public PosInventoryFrame() {
         setTitle("재고 관리");
-        setTitle("재고 관리");
      // 아이콘 설정
      Image img = Toolkit.getDefaultToolkit().getImage(getClass().getResource("/com/itwill/posproject/images/아이스크림.png"));
      setIconImage(img);
         setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-        setBounds(100, 100, 450, 300);
+        setBounds(100, 100, 564, 618);
         contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         setContentPane(contentPane);
         contentPane.setLayout(null);
 
         JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setBounds(10, 36, 414, 168);
+        scrollPane.setBounds(31, 41, 490, 336);
         contentPane.add(scrollPane);
 
         table = new JTable();
+        table.setRowHeight(35); // 테이블 행 높이 설정
+        table.getTableHeader().setFont(new Font("SansSerif", Font.BOLD, 20)); // 컬럼 헤더 폰트 설정
 
         Inventory inventory = inventoryDao.read();
         System.out.println(inventory);
@@ -97,10 +102,21 @@ public class PosInventoryFrame extends JFrame {
                 new String[]{
                         "상품명", "재고"
                 }
-        ));
+        ) {
+//            @Override
+//            public boolean isCellEditable(int row, int column) {
+////                return false; // 셀 편집 금지
+//            }
+        });
+        table.setFont(new Font("SansSerif", Font.PLAIN, 18)); // 테이블 내 텍스트 폰트 설정
+        table.setShowGrid(false); // 그리드 라인 숨기기
         scrollPane.setViewportView(table);
 
-        btnUpdate = new JButton("재고 수정");
+        btnUpdate = new JButton("");
+        btnUpdate.setIcon(new ImageIcon(getClass().getResource("/com/itwill/posproject/images/메인버튼01 (1).png")));
+        btnUpdate.setBorderPainted(false);
+        btnUpdate.setContentAreaFilled(false); // 배경을 투명하게 설정
+        btnUpdate.setForeground(new Color(0, 51, 255));
         btnUpdate.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 int result = JOptionPane.showConfirmDialog(contentPane, "재고를 수정하시겠습니까?", "재고 수정", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, null);
@@ -110,9 +126,20 @@ public class PosInventoryFrame extends JFrame {
             }
         });
 
-        btnUpdate.setFont(new Font("Dialog", Font.BOLD, 14));
-        btnUpdate.setBounds(152, 228, 127, 23);
+        btnUpdate.setFont(new Font("굴림", Font.BOLD, 20));
+        btnUpdate.setBounds(238, 421, 96, 97);
         contentPane.add(btnUpdate);
+        
+        lblNewLabel = new JLabel("재고 수정");
+        lblNewLabel.setForeground(new Color(0, 51, 255));
+        lblNewLabel.setFont(new Font("굴림", Font.BOLD, 19));
+        lblNewLabel.setBounds(238, 517, 96, 35);
+        contentPane.add(lblNewLabel);
+        
+        lblback = new JLabel("");
+        lblback = new JLabel(new ImageIcon(getClass().getResource("/com/itwill/posproject/images/배경화면.jpg")));
+        lblback.setBounds(0, 0, 553, 579);
+        contentPane.add(lblback);
     }
 
     // 재고 수정 메서드
@@ -172,4 +199,3 @@ public class PosInventoryFrame extends JFrame {
         JOptionPane.showMessageDialog(contentPane, "재고가 수정되었습니다.", "알림", JOptionPane.PLAIN_MESSAGE);
     }
 }
-

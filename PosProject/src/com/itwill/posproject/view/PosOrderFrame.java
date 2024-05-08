@@ -5,6 +5,7 @@ import com.itwill.posproject.controller.OrderDao;
 import com.itwill.posproject.model.Inventory;
 import com.itwill.posproject.model.Order;
 
+import java.awt.Color;
 import java.awt.Component;
 import java.awt.EventQueue;
 
@@ -39,7 +40,7 @@ public class PosOrderFrame extends JFrame {
 
     private JPanel contentPane;
     private JLabel lblItem01;
-    private JButton btnNewButton;
+    private JButton btnNewButton01;
     private JLabel lblItem08;
     private JLabel lblItem09;
     private JLabel lblItem07;
@@ -72,7 +73,7 @@ public class PosOrderFrame extends JFrame {
     private final int TANK_BOY_PRICE = 1200;
     private final int COOAND_CRE_PRICE = 1000;
     private final int SSANGSSANG_BAR_PRICE = 1000;
-    private final int WASACK_BAR_PRICE = 10800;
+    private final int WASACK_BAR_PRICE = 1000;
 
     private JTextField textField;
 
@@ -130,8 +131,11 @@ public class PosOrderFrame extends JFrame {
         contentPane.add(panel);
         panel.setLayout(null);
 
-        btnNewButton = new JButton(PIG_BAR_NAME);
-        btnNewButton.addActionListener(new ActionListener() {
+        btnNewButton01 = new JButton("");
+        btnNewButton01.setIcon(new ImageIcon(getClass().getResource("/com/itwill/posproject/images/버튼01.png")));
+        btnNewButton01.setBorderPainted(false);
+        btnNewButton01.setContentAreaFilled(false); // 배경을 투명하게 설정
+        btnNewButton01.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // 주문된 제품과 수량 가져오기
@@ -151,6 +155,7 @@ public class PosOrderFrame extends JFrame {
         });
         
         JButton btnCancel = new JButton("선택취소");
+        btnCancel.setForeground(new Color(0, 51, 255));
         btnCancel.addActionListener(new ActionListener() {
         	@Override
             public void actionPerformed(ActionEvent e) {
@@ -180,34 +185,38 @@ public class PosOrderFrame extends JFrame {
                 updateTotalAmount();
             }
         });
-        btnCancel.setFont(new Font("D2Coding", Font.BOLD, 17));
-        btnCancel.setBounds(273, 504, 115, 37);
+        btnCancel.setFont(new Font("굴림", Font.BOLD, 17));
+        btnCancel.setBounds(347, 504, 115, 37);
         panel.add(btnCancel);
         btnCancel.setFont(new Font("D2Coding", Font.BOLD, 16));
         btnCancel.setBounds(336, 504, 115, 37);
         panel.add(btnCancel);
 
-        btnNewButton.setFont(new Font("D2Coding", Font.BOLD, 17));
-        btnNewButton.setBounds(51, 125, 115, 37);
-        panel.add(btnNewButton);
+        btnNewButton01.setFont(new Font("D2Coding", Font.BOLD, 17));
+        btnNewButton01.setBounds(61, 88, 89, 82);
+        panel.add(btnNewButton01);
 
         lblItem05 = new JLabel("");
-        lblItem05.setIcon(new ImageIcon(getClass().getResource("../images/item05.jpeg")));
-        lblItem05.setBounds(199, 182, 115, 88);
+        lblItem05.setIcon(new ImageIcon(getClass().getResource("/com/itwill/posproject/images/item05.jpeg")));
+        lblItem05.setBounds(199, 182, 115, 65);
         panel.add(lblItem05);
 
         lblItem01 = new JLabel("");
-        lblItem01.setIcon(new ImageIcon(getClass().getResource("../images/item01.jpeg")));
-        lblItem01.setBounds(51, 37, 115, 88);
+        lblItem01.setIcon(new ImageIcon(getClass().getResource("/com/itwill/posproject/images/item01.jpeg")));
+        lblItem01.setBounds(51, 24, 115, 65);
         panel.add(lblItem01);
 
         lblItem02 = new JLabel("");
-        lblItem02.setIcon(new ImageIcon(getClass().getResource("../images/item02.jpeg")));
-        lblItem02.setBounds(199, 37, 115, 88);
+        lblItem02.setIcon(new ImageIcon(getClass().getResource("/com/itwill/posproject/images/item02.jpeg")));
+        lblItem02.setBounds(199, 24, 115, 65);
         panel.add(lblItem02);
 
-        JButton btnNewButton_1 = new JButton(JEWEL_BAR_NAME);
-        btnNewButton_1.addActionListener(new ActionListener() {
+        JButton btnNewButton02 = new JButton(JEWEL_BAR_NAME);
+        btnNewButton02 = new JButton("");
+        btnNewButton02.setIcon(new ImageIcon(getClass().getResource("/com/itwill/posproject/images/버튼02.png")));
+        btnNewButton02.setBorderPainted(false);
+        btnNewButton02.setContentAreaFilled(false); // 배경을 투명하게 설정
+        btnNewButton02.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // 주문된 제품과 수량 가져오기
@@ -224,17 +233,21 @@ public class PosOrderFrame extends JFrame {
             }
         });
 
-        btnNewButton_1.setFont(new Font("D2Coding", Font.BOLD, 17));
-        btnNewButton_1.setBounds(199, 125, 115, 37);
-        panel.add(btnNewButton_1);
+        btnNewButton02.setFont(new Font("D2Coding", Font.BOLD, 17));
+        btnNewButton02.setBounds(219, 88, 82, 82);
+        panel.add(btnNewButton02);
 
         lblItem03 = new JLabel("");
-        lblItem03.setIcon(new ImageIcon(getClass().getResource("../images/item03.jpeg")));
-        lblItem03.setBounds(347, 37, 115, 88);
+        lblItem03.setIcon(new ImageIcon(getClass().getResource("/com/itwill/posproject/images/item03.jpeg")));
+        lblItem03.setBounds(347, 24, 115, 65);
         panel.add(lblItem03);
 
-        JButton btnNewButton_1_1 = new JButton(BUNPARAE_NAME);
-        btnNewButton_1_1.addActionListener(new ActionListener() {
+        JButton btnNewButton03 = new JButton(BUNPARAE_NAME);
+        btnNewButton03 = new JButton("");
+        btnNewButton03.setIcon(new ImageIcon(getClass().getResource("/com/itwill/posproject/images/버튼03.png")));
+        btnNewButton03.setBorderPainted(false);
+        btnNewButton03.setContentAreaFilled(false); // 배경을 투명하게 설정
+        btnNewButton03.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // 주문된 제품과 수량 가져오기
@@ -251,17 +264,20 @@ public class PosOrderFrame extends JFrame {
             }
         });
 
-        btnNewButton_1_1.setFont(new Font("D2Coding", Font.BOLD, 17));
-        btnNewButton_1_1.setBounds(347, 125, 115, 37);
-        panel.add(btnNewButton_1_1);
+        btnNewButton03.setFont(new Font("D2Coding", Font.BOLD, 17));
+        btnNewButton03.setBounds(369, 88, 82, 82);
+        panel.add(btnNewButton03);
 
         lblItem04 = new JLabel("");
-        lblItem04.setIcon(new ImageIcon(getClass().getResource("../images/item01.jpeg")));
-        lblItem04.setBounds(51, 182, 120, 88);
+        lblItem04.setIcon(new ImageIcon(getClass().getResource("/com/itwill/posproject/images/item04.jpeg")));
+        lblItem04.setBounds(51, 182, 115, 65);
         panel.add(lblItem04);
 
-        JButton btnNewButton_2 = new JButton(WA_NAME);
-        btnNewButton_2.addActionListener(new ActionListener() {
+        JButton btnNewButton04 = new JButton("");
+        btnNewButton04.setIcon(new ImageIcon(getClass().getResource("/com/itwill/posproject/images/버튼04.png")));
+        btnNewButton04.setBorderPainted(false);
+        btnNewButton04.setContentAreaFilled(false); // 배경을 투명하게 설정
+        btnNewButton04.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // 주문된 제품과 수량 가져오기
@@ -277,16 +293,19 @@ public class PosOrderFrame extends JFrame {
                 }
             }
         });
-        btnNewButton_2.setFont(new Font("D2Coding", Font.BOLD, 17));
-        btnNewButton_2.setBounds(51, 270, 115, 37);
-        panel.add(btnNewButton_2);
+        btnNewButton04.setFont(new Font("D2Coding", Font.BOLD, 17));
+        btnNewButton04.setBounds(68, 245, 82, 82);
+        panel.add(btnNewButton04);
 
         JLabel lblNewLabel_1_2_3 = new JLabel("");
         lblNewLabel_1_2_3.setBounds(199, 182, 115, 88);
         panel.add(lblNewLabel_1_2_3);
 
-        JButton btnNewButton_3 = new JButton(WILD_BODY_NAME);
-        btnNewButton_3.addActionListener(new ActionListener() {
+        JButton btnNewButton05 = new JButton("");
+        btnNewButton05.setIcon(new ImageIcon(getClass().getResource("/com/itwill/posproject/images/버튼01.png")));
+        btnNewButton05.setBorderPainted(false);
+        btnNewButton05.setContentAreaFilled(false); // 배경을 투명하게 설정
+        btnNewButton05.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // 주문된 제품과 수량 가져오기
@@ -302,12 +321,15 @@ public class PosOrderFrame extends JFrame {
                 }
             }
         });
-        btnNewButton_3.setFont(new Font("D2Coding", Font.BOLD, 16));
-        btnNewButton_3.setBounds(199, 270, 115, 37);
-        panel.add(btnNewButton_3);
+        btnNewButton05.setFont(new Font("D2Coding", Font.BOLD, 16));
+        btnNewButton05.setBounds(219, 245, 82, 82);
+        panel.add(btnNewButton05);
 
-        JButton btnNewButton_4 = new JButton(TANK_BOY_NAME);
-        btnNewButton_4.addActionListener(new ActionListener() {
+        JButton btnNewButton06 = new JButton("");
+        btnNewButton06.setIcon(new ImageIcon(getClass().getResource("/com/itwill/posproject/images/버튼02.png")));
+        btnNewButton06.setBorderPainted(false);
+        btnNewButton06.setContentAreaFilled(false); // 배경을 투명하게 설정
+        btnNewButton06.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // 주문된 제품과 수량 가져오기
@@ -319,17 +341,20 @@ public class PosOrderFrame extends JFrame {
                 addOrderToTable(productName, quantity, TANK_BOY_PRICE);
             }
         });
-        btnNewButton_4.setFont(new Font("D2Coding", Font.BOLD, 17));
-        btnNewButton_4.setBounds(347, 270, 115, 37);
-        panel.add(btnNewButton_4);
+        btnNewButton06.setFont(new Font("D2Coding", Font.BOLD, 17));
+        btnNewButton06.setBounds(369, 245, 82, 82);
+        panel.add(btnNewButton06);
 
         lblItem07 = new JLabel("");
-        lblItem07.setIcon(new ImageIcon(getClass().getResource("../images/item07.jpeg")));
-        lblItem07.setBounds(51, 331, 115, 88);
+        lblItem07.setIcon(new ImageIcon(getClass().getResource("/com/itwill/posproject/images/item07.jpeg")));
+        lblItem07.setBounds(51, 331, 115, 65);
         panel.add(lblItem07);
 
-        JButton btnNewButton_5 = new JButton(COOAND_CRE_NAME);
-        btnNewButton_5.addActionListener(new ActionListener() {
+        JButton btnNewButton07 = new JButton("");
+        btnNewButton07.setIcon(new ImageIcon(getClass().getResource("/com/itwill/posproject/images/버튼03.png")));
+        btnNewButton07.setBorderPainted(false);
+        btnNewButton07.setContentAreaFilled(false); // 배경을 투명하게 설정
+        btnNewButton07.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // 주문된 제품과 수량 가져오기
@@ -341,12 +366,15 @@ public class PosOrderFrame extends JFrame {
                 addOrderToTable(productName, quantity, COOAND_CRE_PRICE);
             }
         });
-        btnNewButton_5.setFont(new Font("D2Coding", Font.BOLD, 17));
-        btnNewButton_5.setBounds(51, 419, 115, 37);
-        panel.add(btnNewButton_5);
+        btnNewButton07.setFont(new Font("D2Coding", Font.BOLD, 17));
+        btnNewButton07.setBounds(68, 394, 82, 82);
+        panel.add(btnNewButton07);
 
-        JButton btnNewButton_6 = new JButton(SSANGSSANG_BAR_NAME);
-        btnNewButton_6.addActionListener(new ActionListener() {
+        JButton btnNewButton08 = new JButton("");
+        btnNewButton08.setIcon(new ImageIcon(getClass().getResource("/com/itwill/posproject/images/버튼04.png")));
+        btnNewButton08.setBorderPainted(false);
+        btnNewButton08.setContentAreaFilled(false); // 배경을 투명하게 설정
+        btnNewButton08.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // 주문된 제품과 수량 가져오기
@@ -362,12 +390,15 @@ public class PosOrderFrame extends JFrame {
                 }
             }
         });
-        btnNewButton_6.setFont(new Font("D2Coding", Font.BOLD, 17));
-        btnNewButton_6.setBounds(199, 419, 115, 37);
-        panel.add(btnNewButton_6);
+        btnNewButton08.setFont(new Font("D2Coding", Font.BOLD, 17));
+        btnNewButton08.setBounds(219, 394, 82, 82);
+        panel.add(btnNewButton08);
 
-        JButton btnNewButton_7 = new JButton(WASACK_BAR_NAME);
-        btnNewButton_7.addActionListener(new ActionListener() {
+        JButton btnNewButton09 = new JButton("");
+        btnNewButton09.setIcon(new ImageIcon(getClass().getResource("/com/itwill/posproject/images/버튼01.png")));
+        btnNewButton09.setBorderPainted(false);
+        btnNewButton09.setContentAreaFilled(false); // 배경을 투명하게 설정
+        btnNewButton09.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // 주문된 제품과 수량 가져오기
@@ -383,12 +414,13 @@ public class PosOrderFrame extends JFrame {
                 }
             }
         });
-        btnNewButton_7.setFont(new Font("D2Coding", Font.BOLD, 17));
-        btnNewButton_7.setBounds(347, 419, 115, 37);
-        panel.add(btnNewButton_7);
+        btnNewButton09.setFont(new Font("D2Coding", Font.BOLD, 17));
+        btnNewButton09.setBounds(369, 394, 82, 82);
+        panel.add(btnNewButton09);
 
         // 주문버튼
         btnOrder = new JButton("주문");
+        btnOrder.setForeground(new Color(0, 51, 255));
         btnOrder.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -405,12 +437,13 @@ public class PosOrderFrame extends JFrame {
             }
         });
 
-        btnOrder.setFont(new Font("D2Coding", Font.BOLD, 17));
+        btnOrder.setFont(new Font("굴림", Font.BOLD, 17));
         btnOrder.setBounds(60, 504, 115, 37);
         panel.add(btnOrder);
 
         // 취소 버튼
         btnReset = new JButton("주문초기화");
+        btnReset.setForeground(new Color(0, 51, 255));
         btnReset.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -437,23 +470,23 @@ public class PosOrderFrame extends JFrame {
                 updateTotalAmount();
             }
         });
-        btnReset.setFont(new Font("D2Coding", Font.BOLD, 16));
-        btnReset.setBounds(199, 504, 115, 37);
+        btnReset.setFont(new Font("굴림", Font.BOLD, 16));
+        btnReset.setBounds(199, 504, 125, 37);
         panel.add(btnReset);
 
         lblItem06 = new JLabel("");
-        lblItem06.setIcon(new ImageIcon(getClass().getResource("../images/item06.jpeg")));
-        lblItem06.setBounds(347, 182, 115, 88);
+        lblItem06.setIcon(new ImageIcon(getClass().getResource("/com/itwill/posproject/images/item06.jpeg")));
+        lblItem06.setBounds(347, 182, 115, 65);
         panel.add(lblItem06);
 
         lblItem08 = new JLabel("");
-        lblItem08.setIcon(new ImageIcon(getClass().getResource("../images/item08.jpeg")));
-        lblItem08.setBounds(199, 331, 115, 88);
+        lblItem08.setIcon(new ImageIcon(getClass().getResource("/com/itwill/posproject/images/item08.jpeg")));
+        lblItem08.setBounds(199, 331, 115, 65);
         panel.add(lblItem08);
 
         lblItem09 = new JLabel("");
-        lblItem09.setIcon(new ImageIcon(getClass().getResource("../images/item09.png")));
-        lblItem09.setBounds(347, 331, 115, 88);
+        lblItem09.setIcon(new ImageIcon(getClass().getResource("/com/itwill/posproject/images/item09.png")));
+        lblItem09.setBounds(347, 331, 115, 65);
         panel.add(lblItem09);
         
         lblNewLabel_2 = new JLabel(new ImageIcon(getClass().getResource("/com/itwill/posproject/images/배경화면.jpg")));
@@ -461,7 +494,7 @@ public class PosOrderFrame extends JFrame {
         panel.add(lblNewLabel_2);
 
         JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setBounds(507, 37, 365, 418);
+        scrollPane.setBounds(513, 36, 365, 418);
         contentPane.add(scrollPane);
 
         table = new JTable();
@@ -490,7 +523,8 @@ public class PosOrderFrame extends JFrame {
 
 
         JLabel lblNewLabel = new JLabel("합계금액");
-        lblNewLabel.setFont(new Font("D2Coding", Font.BOLD, 20));
+        lblNewLabel.setForeground(new Color(0, 51, 255));
+        lblNewLabel.setFont(new Font("굴림", Font.BOLD, 21));
         lblNewLabel.setHorizontalAlignment(SwingConstants.CENTER);
         lblNewLabel.setBounds(547, 485, 108, 50);
         contentPane.add(lblNewLabel);
