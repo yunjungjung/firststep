@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="ko">
     <head>
         <meta charset="UTF-8">
         <title>LONGLONG WORLD</title>
@@ -15,21 +15,44 @@
             h1, h2, h5, h6 {
                 font-family: 'Roboto', sans-serif; /* 선택한 폰트를 적용합니다 */
             }
+
+            /* 중앙 정렬을 위한 스타일 */
+            #footer {
+                text-align: center; /* 텍스트를 중앙으로 정렬 */
+                margin-top: 20px; /* 상단 여백 추가 */
+            }
+
+            #footer a {
+                margin: 0 10px; /* 좌우 여백 추가 */
+                display: inline-block; /* 인라인 블록으로 표시 */
+            }
         </style>
     </head>
     <body>
         <main>
-            <section>
-                <div style="text-align: center">
-                    <img alt="아롱다롱" src="images/아롱다롱.jpg" />
-                    <h1>WELCOME TO 아롱다롱 WORLD</h1>
-                    <br/>
-                    <h2></h2>
-                    <h5>welcome to my information homepage! actually, this is my frist info page<br>but not difficult to make this page. you know, I'm not good at English well! 
-                    <br>Actually, this talks about Me, but I don't have many too much information.<br> hum well, yes.frist my favorite food is cheese and Korean Barbecue.</h5>
-                    <h6 style="color: gray">@alongdalong2013</h6>
+            <div style="text-align: center">
+                <img alt="아롱다롱" src="images/아롱다롱.jpg" />
+                <h1>WELCOME TO 윤정 WORLD</h1>
+                <br/>
+                <div class="container">
+                    <div class="first">
+                        <ol>
+                            <li><a class="mainText" href="who.html">나는 누구??</a></li>
+                            <li><a class="mainText" href="alongdalong.html">반려견 소개!!</a></li>
+                        </ol>
+                    </div>
                 </div>
-            </section>
+                <h5>안녕하세요 152기 수강생 여러분들 ♥<br>제 블로그에 놀러와 주셔서 감사합니다!</h5>
+                <h6 style="color: gray">@alongdalong2013</h6>
+                <div id="footer">
+                    <a href="https://www.instagram.com/heyrong__/?hl=ko">
+                        <img src="images/insta.png" width="70px" height="70px" alt="Instagram">
+                    </a>
+                    <a href="https://github.com/yunjungjung">
+                        <img src="images/github.png" width="70px" height="70px" alt="GitHub">
+                    </a>
+                </div>
+            </div>
         </main>
     </body>
 </html>

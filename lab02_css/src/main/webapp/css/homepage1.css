@@ -1,8 +1,4 @@
-@charset "UTF-8"; /* CSS 파일 인코딩 선언 */
-
+@CHARSET "UTF-8";
 body {
-    /* 그라데이션 컬러 */
-    background: skyblue; /* 상단에서 하단으로 그라데이션 색상 적용 */
-
-
+    background: skyblue;
 }
